@@ -1,0 +1,31 @@
+{
+  "name": "onechat-webclient-cli",
+  "version": "0.1.2",
+  "description": "",
+  "authors": [
+    "wvffle <casper@wvffle.net>"
+  ],
+  "main": "dist/cli.js",
+  "preferGlobal": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onechat/webclient-cli.git"
+  },
+  "bin": {
+    "onechat": "dist/cli.js"
+  },
+  "devDependencies": {
+    "glob": "^7.0.6",
+    "grunt": "^1.0.1",
+    "grunt-contrib-coffee": "^1.0.0",
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onechat/webclient-cli/issues"
+  },
+  "homepage": "https://github.com/onechat/webclient-cli#readme"
+}
