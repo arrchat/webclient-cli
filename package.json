@@ -1,11 +1,14 @@
 {
   "name": "onechat-webclient-cli",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "",
   "authors": [
     "wvffle <casper@wvffle.net>"
   ],
-  "main": "dist/cli.js",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/cli",
   "preferGlobal": "true",
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
     "glob": "^7.0.6",
     "grunt": "^1.0.1",
     "grunt-contrib-coffee": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "rimraf": "^2.5.4"
   },
   "dependencies": {

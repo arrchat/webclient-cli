@@ -27,15 +27,15 @@ module.exports = (grunt) ->
     done = this.async()
     glob 'src/*.coffee', (err, files) ->
       return grunt.log.errorlns if err?
-      cli = 'var cli;\n\ncli = require(\'commander\');\n\ncli.version(\'' + json.version + '\');\n\n'
+      cli = '#!/usr/bin/env node\n\nvar cli;\n\ncli = require(\'commander\');\n\ncli.version(\'' + json.version + '\');\n\n'
       for file in files
         content = grunt.file.read file
           .split '\n'
         if content[0].startsWith('# ') and content[1].startsWith('# ')
           usage = content[0].slice 2, -1
           descr = content[1].slice 2, -1
-          cli += 'cli.command(\'' + usage + '\', \'' + descr + '\')\n\t.action(require(\'./' + path.basename(file, '.coffee') + '.js\'));\n\n'
-      cli += 'cli.parse(process.argv);\n'
+          cli += 'cli.command(\'' + usage + '\')\n\t.description(\'' + descr + '\')\n\t.action(require(\'./' + path.basename(file, '.coffee') + '.js\'));\n\n'
+      cli += 'cli.parse(process.argv);\nif (!process.argv.slice(2).length) { cli.outputHelp() };\n'
       grunt.file.write 'dist/cli.js', cli
       done()
 
