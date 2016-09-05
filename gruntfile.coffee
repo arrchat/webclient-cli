@@ -3,6 +3,7 @@ module.exports = (grunt) ->
   rimraf = require 'rimraf'
   glob = require 'glob'
   path = require 'path'
+  ejs = require 'ejs'
 
   grunt.initConfig
     pkg: json
@@ -11,10 +12,15 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'src/'
-          src: '*.coffee'
+          src: [ '*.coffee', '!cli.coffee']
           dest: 'dist/'
           ext: '.js'
         ]
+        options:
+          bare: true
+      cli:
+        files:
+          'dist/cli.js': 'dist/cli.js'
         options:
           bare: true
 
@@ -27,16 +33,22 @@ module.exports = (grunt) ->
     done = this.async()
     glob 'src/*.coffee', (err, files) ->
       return grunt.log.errorlns if err?
-      cli = '#!/usr/bin/env node\n\nvar cli;\n\ncli = require(\'commander\');\n\ncli.version(\'' + json.version + '\');\n\n'
+      data =
+        commands: []
+        version: json.version
       for file in files
         content = grunt.file.read file
           .split '\n'
         if content[0].startsWith('# ') and content[1].startsWith('# ')
           usage = content[0].slice 2, -1
           descr = content[1].slice 2, -1
-          cli += 'cli.command(\'' + usage + '\')\n\t.description(\'' + descr + '\')\n\t.action(require(\'./' + path.basename(file, '.coffee') + '.js\'));\n\n'
-      cli += 'cli.parse(process.argv);\nif (!process.argv.slice(2).length) { cli.outputHelp() };\n'
-      grunt.file.write 'dist/cli.js', cli
+          data.commands.push
+            name: usage
+            description: descr
+            action: 'require \'./' + path.basename(file, '.coffee') + '.js\''
+      grunt.file.write 'dist/cli.js', ejs.render (grunt.file.read 'src/cli.coffee'), data, escape: (s) -> s
       done()
 
-  grunt.registerTask 'default', [ 'cleanup', 'coffee', 'cli' ]
+
+
+  grunt.registerTask 'default', [ 'cleanup', 'coffee:commands', 'cli', 'coffee:cli' ]

@@ -25,7 +25,9 @@
     "rimraf": "^2.5.4"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "ejs": "^2.5.1"
   },
   "license": "MIT",
   "bugs": {
