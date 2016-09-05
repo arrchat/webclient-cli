@@ -1,6 +1,6 @@
 # <%= view %> view
 
-ng.directive '<%= view %>', [
+app.directive '<%= view %>', [
   '$rootScope'
   ($scope) ->
     restrict: 'C'

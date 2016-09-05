@@ -23,7 +23,6 @@ global.copyTpl = (src, dest, data) ->
   dest = path.normalize dest
   mkdir dest
   escape = (s) ->
-    console.log s
     s = s.replace /__%/g, '<' + '%'
     s = s.replace /%__/g, '%' + '>'
     s
