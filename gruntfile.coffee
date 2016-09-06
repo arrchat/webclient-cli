@@ -12,15 +12,15 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'src/'
-          src: [ '*.coffee', '!cli.coffee']
+          src: [ '*.coffee', '!onechat.coffee']
           dest: 'dist/'
           ext: '.js'
         ]
         options:
           bare: true
-      cli:
+      onechat:
         files:
-          'dist/cli.js': 'dist/cli.js'
+          'dist/onechat.js': 'dist/onechat.js'
         options:
           bare: true
 
@@ -29,7 +29,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'cleanup', ->
     rimraf.sync 'dist'
 
-  grunt.registerTask 'cli', ->
+  grunt.registerTask 'onechat', ->
     done = this.async()
     glob 'src/*.coffee', (err, files) ->
       return grunt.log.errorlns if err?
@@ -46,9 +46,9 @@ module.exports = (grunt) ->
             name: usage
             description: descr
             action: 'require \'./' + path.basename(file, '.coffee') + '.js\''
-      grunt.file.write 'dist/cli.js', ejs.render (grunt.file.read 'src/cli.coffee'), data, escape: (s) -> s
+      grunt.file.write 'dist/onechat.js', ejs.render (grunt.file.read 'src/onechat.coffee'), data, escape: (s) -> s
       done()
 
 
 
-  grunt.registerTask 'default', [ 'cleanup', 'coffee:commands', 'cli', 'coffee:cli' ]
+  grunt.registerTask 'default', [ 'cleanup', 'coffee:commands', 'onechat', 'coffee:onechat' ]
