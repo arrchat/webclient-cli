@@ -1,15 +1,17 @@
 # webclient-cli
 ```
-  Usage: onechat [options] [command]
+  Usage: arrchat [options] [command]
 
 
   Commands:
 
-    generator <name>  creates new generator
-    plugin <name>     creates new plugin
-    service <name>    creates new service
-    template <name>   creates new template
-    view <name>       creates new view
+    controller <name>  creates new controller
+    generator <name>   creates new generator
+    plugin <name>      creates new plugin
+    service <name>     creates new service
+    style <name>       creates new style
+    template <name>    creates new template
+    view <name>        creates new view
 
   Options:
 

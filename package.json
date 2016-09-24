@@ -1,6 +1,6 @@
 {
-  "name": "onechat-webclient-cli",
-  "version": "1.0.1",
+  "name": "arrchat-webclient-cli",
+  "version": "1.0.2",
   "description": "",
   "authors": [
     "wvffle <casper@wvffle.net>"
@@ -8,14 +8,14 @@
   "files": [
     "dist"
   ],
-  "main": "dist/cli",
+  "main": "dist/arrchat",
   "preferGlobal": "true",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onechat/webclient-cli.git"
+    "url": "git+https://github.com/arrchat/webclient-cli.git"
   },
   "bin": {
-    "onechat": "dist/cli.js"
+    "arrchat": "dist/arrchat.js"
   },
   "devDependencies": {
     "glob": "^7.0.6",
@@ -31,7 +31,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/onechat/webclient-cli/issues"
+    "url": "https://github.com/arrchat/webclient-cli/issues"
   },
-  "homepage": "https://github.com/onechat/webclient-cli#readme"
+  "homepage": "https://github.com/arrchat/webclient-cli#readme"
 }
