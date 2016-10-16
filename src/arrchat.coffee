@@ -10,6 +10,13 @@ ejs = require 'ejs'
 global.mkdir = (dest) ->
   mkdirp.sync (path.dirname path.normalize dest), parseInt '0777', 8
 
+# https://gist.github.com/wvffle/0deea63696b993c7364c9d7ecfa1ecf1
+String::format = ->
+  args = arguments
+  @replace /\{\d+\}/g, (a) ->
+    a = args[a.slice(1, -1)]
+    if a? then a else ''
+
 global.copy = (src, dest) ->
   dest = path.normalize dest
   mkdir dest
@@ -20,7 +27,10 @@ global.copy = (src, dest) ->
 
 global.copyTpl = (src, dest, data) ->
   src = path.normalize __dirname + '/../templates/' + src
-  dest = path.normalize dest
+  dest = path.normalize dest.format data[Object.keys(data)[0]]
+  bdata = {}
+  for key, value of data
+    bdata[key] = path.basename value
   mkdir dest
   escape = (s) ->
     s = s.replace /__%/g, '<' + '%'
@@ -29,7 +39,7 @@ global.copyTpl = (src, dest, data) ->
   fs.readFile src, (err, content) ->
     throw err if err?
     content = content.toString()
-    fs.writeFile dest, (ejs.render content, data, escape: escape), (err) ->
+    fs.writeFile dest, (ejs.render content, bdata, escape: escape), (err) ->
       throw err if err?
       console.log 'created '.green + dest
 

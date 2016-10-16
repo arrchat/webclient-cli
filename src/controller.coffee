@@ -2,4 +2,4 @@
 # creates new controller
 
 module.exports = (name) ->
-  copyTpl 'controller/index.coffee', process.cwd() + '/controllers/' + name + '/index.coffee', controller: name
+  copyTpl 'controller/index.coffee', process.cwd() + '/controllers/{0}/index.coffee', controller: name

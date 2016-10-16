@@ -3,5 +3,5 @@
 
 module.exports = (name) ->
   mkdir __dirname + '/../templates/' + name
-  copyTpl 'generator/command.coffee', __dirname + '/../src/' + name + '.coffee', generator: name
-  copyTpl 'generator/template.coffee', __dirname + '/../templates/' + name + '/index.coffee', generator: name
+  copyTpl 'generator/command.coffee', __dirname + '/../src/{0}.coffee', generator: name
+  copyTpl 'generator/template.coffee', __dirname + '/../templates/{0}/index.coffee', generator: name
