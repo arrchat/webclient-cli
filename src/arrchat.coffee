@@ -28,7 +28,10 @@ global.copy = (src, dest) ->
 global.copyTpl = (src, dest, data) ->
   src = path.normalize __dirname + '/../templates/' + src
   dest = path.normalize dest.format data[Object.keys(data)[0]]
-  bdata = {}
+  bdata = 
+    camel: (str) ->
+      str.replace /(\-[a-z])/g, (m) ->
+        m.toUpperCase().slice 1
   for key, value of data
     bdata[key] = path.basename value
   mkdir dest
