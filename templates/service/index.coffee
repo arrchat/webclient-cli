@@ -1,7 +1,10 @@
 # <%= service %> service
-app.factory '<%= service %>', ->
-  <%= service %> = {}
-  # <%= service %> service logic
+app.factory '<%= service %>', [
+  '$rootScope'
+  ($scope) ->
+    <%= service %> = {}
+    # <%= service %> service logic
 
 
-  <%= service %>
+    <%= service %>
+]
