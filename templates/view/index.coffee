@@ -3,8 +3,8 @@
 app.directive '<%= camel(view) %>', [
   '$rootScope'
   ($scope) ->
-    unless $load.views['<%= view %>'] == !0
-      $load.views['<%= view %>'] = !0
+    unless $load.views['<%= view %>'] is true
+      $load.views['<%= view %>'] = true
       $dom.head.append e 'link',
         rel: 'stylesheet',
         href: 'views/<%= view %>/<%= view %>.css'
