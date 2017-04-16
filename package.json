@@ -17,6 +17,9 @@
   "bin": {
     "arrchat": "cli/arrchat.js"
   },
+  "scripts": {
+    "readme": "echo '# webclient-cli\n```' > readme.md; arrchat >> readme.md; echo '```' >> readme.md"
+  },
   "devDependencies": {
     "grunt": "^1.0.1"
   },
